@@ -25,6 +25,7 @@ defineProps({
     type: String,
     default: "outlined"
   }
+  
 });
 
 const value = ref('');

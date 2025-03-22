@@ -21,7 +21,7 @@
           size="64"
         ></v-avatar>
 
-        <div>john@google.com</div>
+        <div>niechan@gmail.com</div>
       </v-sheet>
 
       <v-divider></v-divider>
@@ -42,10 +42,8 @@
 <script setup>
   import { ref } from 'vue'
   const links = [
-    ['mdi-inbox-arrow-down', 'Inbox'],
-    ['mdi-send', 'Send'],
-    ['mdi-delete', 'Trash'],
-    ['mdi-alert-octagon', 'Spam'],
+    ['mdi-inbox-arrow-down', 'Preview Data'],
+    ['mdi-send', 'File Upload'],
   ]
 
   const drawer = ref(null)
@@ -57,10 +55,8 @@
       cards: ['Today', 'Yesterday'],
       drawer: null,
       links: [
-        ['mdi-inbox-arrow-down', 'Inbox'],
-        ['mdi-send', 'Send'],
-        ['mdi-delete', 'Trash'],
-        ['mdi-alert-octagon', 'Spam'],
+        ['mdi-inbox-arrow-down', 'Preview Data'],
+        ['mdi-send', 'File Upload'],
       ],
     }),
   }
