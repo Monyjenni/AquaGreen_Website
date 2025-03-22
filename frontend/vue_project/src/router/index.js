@@ -22,7 +22,7 @@ const router = createRouter({
     {
       path: '/register',
       name: 'register',
-      component: () => import('../views//auth/auth_user/user_register.vue'),
+      component: () => import('../views/auth/auth_user/user_register.vue'),
     },
     {
       path: '/dashboard',
@@ -32,7 +32,7 @@ const router = createRouter({
     {
       path: '/file_upload',
       name: 'file upload',
-      component: () => import('../views/AboutView.vue'),
+      component: () => import('../views/user/file_upload.vue'),
     },
   ],
 })

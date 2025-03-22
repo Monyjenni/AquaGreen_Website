@@ -14,6 +14,7 @@
                 label="Full Name"
                 required
                 :rules="fullNameRules"
+                variant="outlined"
               ></aqTextField>
             </div>
             <div class="form-group">
@@ -23,6 +24,7 @@
                 type="email"
                 :rules="emailRules"
                 required
+                variant="outlined"
               ></aqTextField>
             </div>
             <div class="form-group">
@@ -32,6 +34,7 @@
                 type="text"
                 required
                 :rules="phoneNumberRules"
+                variant="outlined"
               ></aqTextField>
             </div>
             <div class="form-group">
@@ -41,6 +44,7 @@
                 type="password"
                 :rules="passwordRules"
                 required
+                variant="outlined"
               ></aqTextField>
             </div>
             <div class="form-group">
@@ -50,18 +54,15 @@
                 label="Confirm Password"
                 :rules="confirmPasswordRules"
                 required
+                variant="outlined"
               ></aqTextField>
             </div>
           </div>
         </div>
         <div class="center">
-          <span>Already have an account? <a href="#" @click="toggleMode">Log In</a></span>
-          <div class="checkbox">
-            <input type="checkbox" id="terms" v-model="terms" />
-            <label for="terms"
-              >I agree to the terms <a href="#">Teacher Assistant</a></label
-            >
-          </div>
+          <span
+            >Already have an account? <a href="#" @click="toggleMode">Log In</a></span
+          >
         </div>
         <div class="form-group full-width-button">
           <aqBtn type="submit" @click="submitForm" label="Sign up" color="#d3781e"/>
@@ -73,7 +74,7 @@
 
 <script setup>
 import { ref } from "vue";
-//import axios from 'axios';
+import axios from 'axios';
 import { useRouter } from "vue-router";
 import aqBtn from '../../../components/aqBtn.vue'
 import aqCard from '../../../components/aqCard.vue'
@@ -91,10 +92,6 @@ const signupData = ref({
   faculty: "",
   profilePicture: null,
 });
-
-const handleFileChange = (file) => {
-  signupData.value.profilePicture = file;
-};
 
 const emailRules = [
   (v) => !!v || "Email is required",
@@ -127,16 +124,6 @@ const phoneNumberRules = [
   (v) => /^\d{10}$/.test(v) || "Phone number must be 10 digits",
 ];
 
-const universityNameRules = [
-  (v) => !!v || "University name is required",
-  (v) => v.length >= 3 || "University name must be at least 3 characters",
-];
-
-const facultyRules = [
-  (v) => !!v || "Faculty is required",
-  (v) => v.length >= 2 || "Faculty must be at least 2 characters",
-];
-
 const formRef = ref(null);
 
 const submitForm = () => {
@@ -148,12 +135,6 @@ const submitForm = () => {
       formData.append('phoneNumber', signupData.value.phoneNumber);
       formData.append('password', signupData.value.password);
       formData.append('password_confirmation', signupData.value.confirmPassword);
-      formData.append('universityName', signupData.value.universityName);
-      formData.append('faculty', signupData.value.faculty);
-      if (signupData.value.profilePicture) {
-        formData.append('profilePicture', signupData.value.profilePicture);
-      }
-
       axios.post('http://localhost:8000/api/register', formData)
         .then(response => {
           console.log(response.data);
@@ -179,21 +160,20 @@ const toggleMode = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(/teacher-asisst-frontend/src/pages/auth/adminScreen/SignupViewAdmin.vue);
+  background-image: url(/);
   background-size: cover;
   background-position: center;
   padding: 20px;
 }
 
 .card {
-  width: 1000px;
+  width: 500px;
   max-height: 100vh;
   margin: 10px 10px;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-image: url("@assets/ta-classroom.jpg");
 }
 
 .title {
@@ -220,12 +200,6 @@ const toggleMode = () => {
   font-size: 18px;
 }
 
-.signup-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
 .form-column {
   display: contents;
 }
@@ -240,12 +214,6 @@ const toggleMode = () => {
 .form-group {
   display: flex;
   flex-direction: column;
-}
-
-.full-width-button {
-  grid-column: span 2;
-  display: flex;
-  justify-content: center;
 }
 
 .full-width-button aqBtn {
